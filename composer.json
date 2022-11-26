@@ -1,0 +1,15 @@
+{
+    "name": "yousry/bugloos",
+    "autoload": {
+        "psr-4": {
+            "Yousry\\Bugloos\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ahmed yousry",
+            "email": "ayousry943@gmail.com"
+        }
+    ],
+    "require": {}
+}
