@@ -1,12 +1,13 @@
 <?php
-//create package for laravel library that can quickly generate a gridview response on the server.
+include_once 'classloader/env.php';
+use src\classloader\Env;
+
+
 //this is the main class that will be used to generate the gridview response.
 class Gridview
 {
-    private $host = "localhost"; // your host name  
-    private $username = "root"; // your user name  
-    private $password = "root"; // your password  
-    private $db = "test"; // your database name 
+
+
     private $conn; // connection variable
     private $table; // table name
     private $columns; // columns to be selected
@@ -33,9 +34,10 @@ class Gridview
 
     public function __construct($table)
     {
+        $env = new Env();  
         $this->table = $table;
    
-        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->db);
+        $this->conn = new mysqli($env->db_server, $env->db_user, $env->db_password, $env->db_name);
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
@@ -342,51 +344,7 @@ class Gridview
 
 }
 
-$Gridview = new Gridview('posts');
-//$test->insertTable('posts', 'name, content', "'test', 'test'");
 
-
-//  $test->setTable("posts");
-
-  $Gridview->setColumns("id, name");
-//   $Gridview->setWhere("name  LIKE '%koko%'");
-   $Gridview->Search( "name LIKE '%koko%'");
-   
-  
-
- 
-    $Gridview->setOrder("id DESC");
-    $data = $Gridview->dataJson();
-
-//   echo  $Gridview->Pagination();
-
-
-
-
-
-
-
-//  //$test->setLimit(1);
-
-//$Gridview->setWhere("name='koko'");
-
- //echo $Gridview->Pagination();
- 
-   // $test->setWhere("id = 1");
- //$test->setWhere("name='koko'");
-// // $test->setOrder("column1 ASC");
-// // $test->setLimit("10");
-// // $test->setOffset("0");
-// // $test->search("AND;OR");
-// // $test->searchColumns("column1;column2");
-// // $test->searchOperator("LIKE;LIKE");
-// // $test->searchValue("value1;value2");
-// // $test->searchType("string;string");
-
- //echo $test->dataJson();
-// $total_count = $test->getTotalCount();
-
- //echo $test->dataJson();
 
 
 ?>
